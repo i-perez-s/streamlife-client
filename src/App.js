@@ -14,6 +14,9 @@ export const App = () => {
     socket.on("send-message", (message) => {
       console.log(message);
     });
+    socket.on("send-emote", (message) => {
+      console.log(message);
+    });
 
     return () => {
       socket.disconnect();
@@ -21,8 +24,23 @@ export const App = () => {
   }, []);
 
   const sendMessage = () => {
-    socket.emit("send-message", { text: new Date(), chat: "a" });
+    socket.emit("send-message", {
+      text: "6047cbc967c5f937f0341be2",
+      chat: "a",
+    });
   };
 
-  return <button onClick={sendMessage}>click</button>;
+  const sendEmote = () => {
+    socket.emit("send-emote", {
+      text: "6047cbc967c5f937f0341be2",
+      chat: "a",
+    });
+  };
+
+  return (
+    <>
+      <button onClick={sendMessage}>mesage</button>{" "}
+      <button onClick={sendEmote}>emote</button>
+    </>
+  );
 };
