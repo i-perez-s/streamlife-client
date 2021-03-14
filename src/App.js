@@ -1,23 +1,28 @@
-import React, { useEffect } from 'react'
-import socketIOClient from "socket.io-client";
+import React, { useEffect } from "react";
+import { io } from "socket.io-client";
 
-const ENDPOINT = "http://localhost:3001";
-
+const url = "http://localhost:3001";
 
 export const App = () => {
+  const socket = io(url, {
+    extraHeaders: {
+      token: localStorage.getItem("token"),
+      idstream: "a",
+    },
+  });
   useEffect(() => {
-    const socket = socketIOClient(ENDPOINT);
-    socket.on("lol", data => {
-      console.log(data)
-    })
+    socket.on("send-message", (message) => {
+      console.log(message);
+    });
 
     return () => {
-      socket.disconnect()
-    }
-  }, [])
-  return (
-    <div>
-      hola
-    </div>
-  )
-}
+      socket.disconnect();
+    };
+  }, []);
+
+  const sendMessage = () => {
+    socket.emit("send-message", { text: new Date(), chat: "a" });
+  };
+
+  return <button onClick={sendMessage}>click</button>;
+};
