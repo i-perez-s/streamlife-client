@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { io } from "socket.io-client";
+import { NavbarScreen } from "./components/UI/NavbarScreen";
 
 const url = "http://localhost:3001";
 
@@ -21,7 +22,7 @@ export const App = () => {
     return () => {
       socket.disconnect();
     };
-  }, []);
+  }, [socket]);
 
   const sendMessage = () => {
     socket.emit("send-message", {
@@ -39,7 +40,8 @@ export const App = () => {
 
   return (
     <>
-      <button onClick={sendMessage}>mesage</button>{" "}
+      <NavbarScreen />
+      <button onClick={sendMessage}>mesage</button>
       <button onClick={sendEmote}>emote</button>
     </>
   );
