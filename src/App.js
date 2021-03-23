@@ -41,8 +41,12 @@ export const App = () => {
   return (
     <>
       <NavbarScreen />
-      <button onClick={sendMessage}>mesage</button>
-      <button onClick={sendEmote}>emote</button>
+      <div class="wp-content">
+        <div class="container-fluid mt-5">CONTENT GOES HERE</div>
+      </div>
+
+      {/* <button onClick={sendMessage}>mesage</button>
+      <button onClick={sendEmote}>emote</button> */}
     </>
   );
 };
