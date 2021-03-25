@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { io } from "socket.io-client";
+import { VideoPlayer } from "./components/stream/VideoPlayer";
 import { NavbarScreen } from "./components/UI/NavbarScreen";
 
 const url = "http://localhost:3001";
@@ -41,12 +42,11 @@ export const App = () => {
   return (
     <>
       <NavbarScreen />
-      <div class="wp-content">
-        <div class="container-fluid mt-5">CONTENT GOES HERE</div>
+      <div className="wp-content">
+        <div className="container-fluid mt-5">
+          <VideoPlayer />
+        </div>
       </div>
-
-      {/* <button onClick={sendMessage}>mesage</button>
-      <button onClick={sendEmote}>emote</button> */}
     </>
   );
 };
