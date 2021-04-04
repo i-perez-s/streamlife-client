@@ -1,28 +1,15 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { startLogin } from "../../actions/auth";
-import { useForm } from "../../hooks/useForm";
 
-export const LoginScreen = () => {
-  const dispatch = useDispatch();
-
-  const [formValues, handleInputChange] = useForm({});
-  const { email, password } = formValues;
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(startLogin(email, password));
-  };
-
+export const RegisterScreen = () => {
   return (
     <div className="loginBox">
       <div className="overlay">
-        <form className="form-login" onSubmit={handleSubmit}>
+        <form className="form-login">
           <div className="con">
             <header className="head-form">
-              <h2>Log In</h2>
-              <p>Login here and make awesome things</p>
+              <h2>Register</h2>
+              <p>Register here and make awesome things</p>
             </header>
 
             <br />
@@ -34,11 +21,20 @@ export const LoginScreen = () => {
                 className="form-input"
                 id="txt-input"
                 type="text"
-                placeholder="@Email"
-                name="email"
+                placeholder="@UserName"
                 required
-                onChange={handleInputChange}
-                value={email}
+              />
+              <br />
+
+              <span className="input-item">
+                <i className="fa fa-user-circle"></i>
+              </span>
+              <input
+                className="form-input"
+                id="txt-input"
+                type="text"
+                placeholder="@Email"
+                required
               />
 
               <br />
@@ -54,8 +50,6 @@ export const LoginScreen = () => {
                 id="pwd"
                 name="password"
                 required
-                onChange={handleInputChange}
-                value={password}
               />
 
               <span>
@@ -69,14 +63,14 @@ export const LoginScreen = () => {
 
               <br />
 
-              <button className="log-in"> Log In </button>
+              <button className="log-in"> Register </button>
             </div>
 
             <div className="other">
               <button className="btn submits frgt-pass">Forgot Password</button>
               <button className="btn submits sign-up btn-all">
-                <Link to="/auth/register" className="loginLink">
-                  Sign Up <i className="fa fa-user-plus" aria-hidden="true"></i>
+                <Link to="/auth/login" className="loginLink">
+                  Login <i className="fa fa-user-plus" aria-hidden="true"></i>
                 </Link>
               </button>
             </div>

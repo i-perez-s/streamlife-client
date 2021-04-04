@@ -1,10 +1,7 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 
-import "./styles/styles.scss"
-import { App } from './App';
+import "./styles/styles.scss";
+import { StreamlifeApp } from "./StreamlifeApp";
 
-ReactDOM.render(
-    <App />,
-  document.getElementById('root')
-);
+ReactDOM.render(<StreamlifeApp />, document.getElementById("root"));

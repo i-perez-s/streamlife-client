@@ -1,12 +1,13 @@
-import React, { useEffect } from "react";
-import { io } from "socket.io-client";
-import { VideoPlayer } from "./components/stream/VideoPlayer";
-import { NavbarScreen } from "./components/UI/NavbarScreen";
+import React from "react";
+import { Provider } from "react-redux";
 
-const url = "http://localhost:3001";
+import { AppRouter } from "./routers/AppRouter";
+import { store } from "./store/store";
 
-export const App = () => {
-  const socket = io(url, {
+// const url = "http://localhost:3001";
+
+export const StreamlifeApp = () => {
+  /*   const socket = io(url, {
     extraHeaders: {
       token: localStorage.getItem("token"),
       idstream: "a",
@@ -37,16 +38,11 @@ export const App = () => {
       text: "6047cbc967c5f937f0341be2",
       chat: "a",
     });
-  };
+  }; */
 
   return (
-    <>
-      <NavbarScreen />
-      <div className="wp-content">
-        <div className="container-fluid mt-5">
-          <VideoPlayer />
-        </div>
-      </div>
-    </>
+    <Provider store={store}>
+      <AppRouter />
+    </Provider>
   );
 };

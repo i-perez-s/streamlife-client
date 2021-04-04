@@ -1,0 +1,11 @@
+.btn-electricGreen {
+  background: $electricGreen;
+  width: 100%;
+  &:hover {
+    background-color: darken($color: $electricGreen, $amount: 10);
+  }
+}
+
+.btn-all {
+  width: 100%;
+}

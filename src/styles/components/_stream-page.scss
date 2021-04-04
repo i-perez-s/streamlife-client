@@ -1,0 +1,34 @@
+.c-video {
+  width: 100%;
+  max-width: 700px;
+  height: 50%;
+  width: 75%;
+}
+
+.principalContent {
+  color: white;
+}
+
+.chat {
+  background-color: #fff;
+  height: 100%;
+  width: 100%;
+  list-style: none;
+}
+
+.comment {
+  font-size: 20px;
+  width: 100%;
+  color: black;
+}
+
+.userName {
+  font-weight: bold;
+}
+
+@media only screen and (max-width: 1291px) {
+  .c-video,
+  .chat {
+    display: block;
+  }
+}
