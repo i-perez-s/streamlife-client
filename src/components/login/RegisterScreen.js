@@ -1,11 +1,23 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { register } from "../../actions/auth";
+import { useForm } from "../../hooks/useForm";
 
 export const RegisterScreen = () => {
+  const dispatch = useDispatch();
+  const [formValues, handleInputChange] = useForm({});
+  const { username, email, password } = formValues;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(register(formValues));
+  };
+
   return (
     <div className="loginBox">
       <div className="overlay">
-        <form className="form-login">
+        <form onSubmit={handleSubmit} className="form-login">
           <div className="con">
             <header className="head-form">
               <h2>Register</h2>
@@ -23,6 +35,9 @@ export const RegisterScreen = () => {
                 type="text"
                 placeholder="@UserName"
                 required
+                name="username"
+                onChange={handleInputChange}
+                value={username}
               />
               <br />
 
@@ -35,6 +50,9 @@ export const RegisterScreen = () => {
                 type="text"
                 placeholder="@Email"
                 required
+                name="email"
+                onChange={handleInputChange}
+                value={email}
               />
 
               <br />
@@ -50,6 +68,8 @@ export const RegisterScreen = () => {
                 id="pwd"
                 name="password"
                 required
+                onChange={handleInputChange}
+                value={password}
               />
 
               <span>
