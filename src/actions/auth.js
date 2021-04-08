@@ -1,5 +1,6 @@
 import Swal from "sweetalert2";
 import { fetchSinToken } from "../helpers/fetch";
+import { fileUpload } from "../helpers/fileUpload";
 import { types } from "../types/types";
 
 export const login = (user) => ({
@@ -24,7 +25,7 @@ export const startLogin = (email, password) => {
     }
   };
 };
-export const register = (user) => {
+export const register = (user, file) => {
   return async (dispatch) => {
     const { username, email, password } = user;
     const resp = await fetchSinToken(
@@ -37,7 +38,16 @@ export const register = (user) => {
     if (!body.ok) {
       Swal.fire("Error", body.err.message, "error");
     } else {
-      dispatch(login(body.userdb));
+      console.log(file);
+      if (file) {
+        dispatch(setUserPhoto(file, body.userdb._id));
+      }
+      dispatch(startLogin(body.userdb.email, body.userdb.password));
     }
   };
+};
+
+export const setUserPhoto = async (file, uid) => {
+  const resp = await fileUpload(file, uid);
+  console.log(resp);
 };

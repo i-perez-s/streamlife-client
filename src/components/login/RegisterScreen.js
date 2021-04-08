@@ -1,17 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { register } from "../../actions/auth";
+import { register, setUserPhoto } from "../../actions/auth";
 import { useForm } from "../../hooks/useForm";
 
 export const RegisterScreen = () => {
   const dispatch = useDispatch();
   const [formValues, handleInputChange] = useForm({});
   const { username, email, password } = formValues;
+  const [userPhoto, setUserPhoto] = useState();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(register(formValues));
+    console.log(userPhoto);
+    dispatch(register(formValues, userPhoto));
+  };
+
+  const fileChange = (e) => {
+    let file = e.target.files[0];
+    setUserPhoto({
+      [e.target.id]: file,
+    });
   };
 
   return (
@@ -72,18 +81,18 @@ export const RegisterScreen = () => {
                 value={password}
               />
 
-              <span>
-                <i
-                  className="fa fa-eye"
-                  aria-hidden="true"
-                  type="button"
-                  id="eye"
-                ></i>
-              </span>
+              <br />
+              <br />
+
+              <input
+                className="form-control"
+                type="file"
+                onChange={fileChange}
+              />
 
               <br />
 
-              <button className="log-in"> Register </button>
+              <button className="log-in btn-block"> Register </button>
             </div>
 
             <div className="other">
