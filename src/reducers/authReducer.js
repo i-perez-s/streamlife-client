@@ -5,6 +5,7 @@ const initialState = {
     username: "",
     email: "",
     isInLive: false,
+    photo: "",
     _id: "",
   },
 };

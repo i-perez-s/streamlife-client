@@ -1,9 +1,11 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+
 import { FollowedUsers } from "./FollowedUsers";
 import { SearchInput } from "./SearchInput";
-
 export const Navbar = () => {
+  const { user } = useSelector((state) => state.auth);
   return (
     <>
       <div data-component="navbar">
@@ -30,7 +32,11 @@ export const Navbar = () => {
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  <img src="http://1.gravatar.com/avatar/47db31bd2e0b161008607d84c74305b5?s=96&d=mm&r=g" />
+                  {/* <img src={user.photo} /> */}
+                  <div
+                    class="avatar"
+                    style={{ backgroundImage: `url(${user.photo})` }}
+                  ></div>
                 </Link>
               </div>
             </div>

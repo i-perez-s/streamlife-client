@@ -1,5 +1,5 @@
 import Swal from "sweetalert2";
-import { fetchSinToken } from "../helpers/fetch";
+import { fetchConToken, fetchSinToken } from "../helpers/fetch";
 import { fileUpload } from "../helpers/fileUpload";
 import { types } from "../types/types";
 
@@ -12,8 +12,16 @@ export const logout = () => ({
   type: types.authLogout,
 });
 
+export const startLogout = () => {
+  return (dispatch) => {
+    localStorage.removeItem("token");
+    dispatch(logout());
+  };
+};
+
 export const startLogin = (email, password) => {
   return async (dispatch) => {
+    console.log(email, password);
     const resp = await fetchSinToken("login", { email, password }, "POST");
     const body = await resp.json();
     console.log(body);
@@ -25,7 +33,8 @@ export const startLogin = (email, password) => {
     }
   };
 };
-export const register = (user, file) => {
+
+export const startRegister = (user, file) => {
   return async (dispatch) => {
     const { username, email, password } = user;
     const resp = await fetchSinToken(
@@ -38,16 +47,23 @@ export const register = (user, file) => {
     if (!body.ok) {
       Swal.fire("Error", body.err.message, "error");
     } else {
+      const { userdb } = body;
+      const { _id: uid } = userdb;
       console.log(file);
       if (file) {
-        dispatch(setUserPhoto(file, body.userdb._id));
+        await fileUpload(file, uid);
       }
-      dispatch(startLogin(body.userdb.email, body.userdb.password));
+      dispatch(startLogin(email, password));
+      // dispatch(startLogin(userdb.email, userdb.password));
     }
   };
 };
 
-export const setUserPhoto = async (file, uid) => {
-  const resp = await fileUpload(file, uid);
-  console.log(resp);
+export const renewToken = () => {
+  return async (dispatch) => {
+    const resp = await fetchConToken("renewToken");
+    const { token, user } = await resp.json();
+    localStorage.setItem("token", token);
+    dispatch(login(user));
+  };
 };

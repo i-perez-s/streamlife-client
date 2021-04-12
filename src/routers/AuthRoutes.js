@@ -11,7 +11,7 @@ export const AuthRoutes = ({ history }) => {
         <Switch>
           <Route exact path="/auth/login" component={LoginScreen} />
           <Route exact path="/auth/register" component={RegisterScreen} />
-          <Redirect />
+          <Redirect to="/login" />
         </Switch>
       </div>
     </>

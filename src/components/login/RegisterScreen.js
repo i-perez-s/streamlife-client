@@ -1,26 +1,28 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { register, setUserPhoto } from "../../actions/auth";
+
+import { startRegister } from "../../actions/auth";
 import { useForm } from "../../hooks/useForm";
 
 export const RegisterScreen = () => {
   const dispatch = useDispatch();
-  const [formValues, handleInputChange] = useForm({});
+  const [formValues, handleInputChange] = useForm({
+    username: "",
+    email: "",
+    password: "",
+  });
   const { username, email, password } = formValues;
   const [userPhoto, setUserPhoto] = useState();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(userPhoto);
-    dispatch(register(formValues, userPhoto));
+    dispatch(startRegister(formValues, userPhoto));
   };
 
   const fileChange = (e) => {
     let file = e.target.files[0];
-    setUserPhoto({
-      [e.target.id]: file,
-    });
+    setUserPhoto({ file });
   };
 
   return (
