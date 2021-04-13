@@ -51,12 +51,16 @@ export const startRegister = (user, file) => {
       const { _id: uid } = userdb;
       console.log(file);
       if (file) {
-        await fileUpload(file, uid);
+        dispatch(startUpload(file, uid));
       }
       dispatch(startLogin(email, password));
       // dispatch(startLogin(userdb.email, userdb.password));
     }
   };
+};
+
+export const startUpload = async (file, uid) => {
+  await fileUpload(file, uid);
 };
 
 export const renewToken = () => {
