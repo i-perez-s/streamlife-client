@@ -32,11 +32,11 @@ export const Navbar = () => {
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  {/* <img src={user.photo} /> */}
-                  <div
-                    class="avatar"
+                  <img src={user.photo} alt="userPhoto" />
+                  {/* <div
+                    className="avatar"
                     style={{ backgroundImage: `url(${user.photo})` }}
-                  ></div>
+                  ></div> */}
                 </Link>
               </div>
             </div>

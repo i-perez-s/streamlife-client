@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { startLogout, startUpload } from "../../actions/auth";
+import { startDelete, startLogout, startUpload } from "../../actions/auth";
 
 export const MeScreen = () => {
   const dispatch = useDispatch();
@@ -18,24 +18,34 @@ export const MeScreen = () => {
 
   const fileChange = (e) => {
     let file = e.target.files[0];
+    console.log(file);
     setUserPhoto({ file });
-    dispatch(startUpload(file, user._id));
+    console.log(userPhoto);
+    dispatch(startUpload({ file }, user._id));
   };
 
   const handleLogout = () => {
     dispatch(startLogout());
   };
+
+  const handleDelete = () => {
+    dispatch(startDelete());
+  };
   return (
     <div className="row">
-      <div className="col-md-6">
+      <div className="col-md-6 mb-5">
         <img className="imgUserMePage" src={user.photo} alt="userImg" />
+
+        <span className="mt-5">Change user img:</span>
         <input
           className="form-control mt-3"
           type="file"
           onChange={fileChange}
         />
+        <br />
       </div>
-      <div className="col-md-6 align-items-center">
+
+      <div className="col-md-6 align-items-center mt-5">
         <h2 className="text-center">{user.username.toUpperCase()}</h2>
         <span className="d-block">
           <b>Email:</b> {user.email}
@@ -57,7 +67,7 @@ export const MeScreen = () => {
         </button>
         <button
           className="btn btn-all btn-danger meScreenButton"
-          onClick={handleStreamKey}
+          onClick={handleDelete}
         >
           Delete account
         </button>

@@ -1,11 +1,8 @@
-// import { fetchSinToken } from "./fetch";
-
 export const fileUpload = async (file, uid) => {
   const formData = new FormData();
+  console.log(file);
   formData.append("upload_preset", "react-journal");
   formData.append("file", file.file);
-  console.log(uid);
-  console.log(`${process.env.REACT_APP_API_URL}/setUserPhoto/${uid}`);
   const resp = await fetch(
     `${process.env.REACT_APP_API_URL}/setUserPhoto/${uid}`,
     {
@@ -14,6 +11,7 @@ export const fileUpload = async (file, uid) => {
     }
   );
 
-  console.log(await resp.json());
-  // return ;
+  const body = await resp.json();
+  console.log(resp);
+  return body;
 };

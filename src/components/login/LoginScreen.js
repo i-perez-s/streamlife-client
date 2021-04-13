@@ -8,7 +8,10 @@ import { useForm } from "../../hooks/useForm";
 export const LoginScreen = () => {
   const dispatch = useDispatch();
 
-  const [formValues, handleInputChange] = useForm({});
+  const [formValues, handleInputChange] = useForm({
+    email: "",
+    password: "",
+  });
   const { email, password } = formValues;
 
   const handleSubmit = (e) => {

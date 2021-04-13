@@ -680,3 +680,10 @@ a {
   border-radius: 50%;
   background-size: 100% auto;
 }
+
+@media only screen and (max-width: 400px) {
+  .searchInput {
+    margin-left: 50px;
+    width: 100px;
+  }
+}

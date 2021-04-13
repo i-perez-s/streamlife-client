@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 import { Navbar } from "../components/UI/Navbar";
 import { SearchScreen } from "../components/stream/SearchScreen";
@@ -18,7 +18,6 @@ export const StreamRoutes = ({ history }) => {
             <Route exact path="/me" component={MeScreen} />
             <Route exact path="/stream/:id" component={StreamScreen} />
             <Route exact path="/search/:id" component={SearchScreen} />
-            <Redirect to="/" />
           </Switch>
         </div>
       </div>

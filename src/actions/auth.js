@@ -49,18 +49,20 @@ export const startRegister = (user, file) => {
     } else {
       const { userdb } = body;
       const { _id: uid } = userdb;
-      console.log(file);
       if (file) {
-        dispatch(startUpload(file, uid));
+        await fileUpload(file, uid);
       }
       dispatch(startLogin(email, password));
-      // dispatch(startLogin(userdb.email, userdb.password));
     }
   };
 };
 
-export const startUpload = async (file, uid) => {
-  await fileUpload(file, uid);
+export const startUpload = (file, uid) => {
+  return async () => {
+    const body = await fileUpload(file, uid);
+    console.log(body);
+    return body;
+  };
 };
 
 export const renewToken = () => {
@@ -69,5 +71,17 @@ export const renewToken = () => {
     const { token, user } = await resp.json();
     localStorage.setItem("token", token);
     dispatch(login(user));
+  };
+};
+
+export const startDelete = () => {
+  return async (dispatch) => {
+    const resp = await fetchConToken("user", {}, "DELETE");
+    const body = await resp.json();
+    if (!body.ok) {
+      Swal.fire("Error", body.err, "error");
+    } else {
+      dispatch(startLogout());
+    }
   };
 };
