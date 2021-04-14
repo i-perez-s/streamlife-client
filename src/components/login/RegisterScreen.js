@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { startRegister } from "../../actions/auth";
+import { startRegister, startUpload } from "../../actions/auth";
 import { useForm } from "../../hooks/useForm";
 
 export const RegisterScreen = () => {
@@ -14,6 +14,12 @@ export const RegisterScreen = () => {
   });
   const { username, email, password } = formValues;
   const [userPhoto, setUserPhoto] = useState();
+  const { user } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    console.log(userPhoto);
+    if (user._id !== "") dispatch(startUpload(userPhoto));
+  }, [user, dispatch]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -90,6 +96,7 @@ export const RegisterScreen = () => {
                 className="form-control"
                 type="file"
                 onChange={fileChange}
+                required
               />
 
               <br />

@@ -6,7 +6,6 @@ export const MeScreen = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
   const [streamKey, setStreamKey] = useState("**************");
-  const [userPhoto, setUserPhoto] = useState();
 
   const handleStreamKey = () => {
     if (streamKey.includes("**************")) {
@@ -16,12 +15,9 @@ export const MeScreen = () => {
     }
   };
 
-  const fileChange = (e) => {
+  const fileChange = async (e) => {
     let file = e.target.files[0];
-    console.log(file);
-    setUserPhoto({ file });
-    console.log(userPhoto);
-    dispatch(startUpload({ file }, user._id));
+    dispatch(startUpload({ file }));
   };
 
   const handleLogout = () => {

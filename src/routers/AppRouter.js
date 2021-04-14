@@ -1,6 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Redirect,
+  browserHistory,
+} from "react-router-dom";
 import { renewToken } from "../actions/auth";
 
 import { AuthRoutes } from "./AuthRoutes";
@@ -19,7 +24,7 @@ export const AppRouter = () => {
   }, [dispatch]);
 
   return (
-    <Router>
+    <Router history={browserHistory}>
       <div>
         <Switch>
           <PublicRoute

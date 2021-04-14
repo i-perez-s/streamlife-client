@@ -1,4 +1,5 @@
 import Swal from "sweetalert2";
+import { browserHistory } from "react-router";
 import { fetchConToken, fetchSinToken } from "../helpers/fetch";
 import { fileUpload } from "../helpers/fileUpload";
 import { types } from "../types/types";
@@ -21,10 +22,8 @@ export const startLogout = () => {
 
 export const startLogin = (email, password) => {
   return async (dispatch) => {
-    console.log(email, password);
     const resp = await fetchSinToken("login", { email, password }, "POST");
     const body = await resp.json();
-    console.log(body);
     if (!body.ok) {
       Swal.fire("Error", body.err, "error");
     } else {
@@ -47,21 +46,33 @@ export const startRegister = (user, file) => {
     if (!body.ok) {
       Swal.fire("Error", body.err.message, "error");
     } else {
-      const { userdb } = body;
-      const { _id: uid } = userdb;
-      if (file) {
-        await fileUpload(file, uid);
+      const resp = await fetchSinToken("login", { email, password }, "POST");
+      const body = await resp.json();
+      if (!body.ok) {
+        Swal.fire("Error", body.err, "error");
+      } else {
+        localStorage.setItem("token", body.token);
+        dispatch(startUpload(file));
       }
-      dispatch(startLogin(email, password));
     }
   };
 };
 
-export const startUpload = (file, uid) => {
-  return async () => {
-    const body = await fileUpload(file, uid);
-    console.log(body);
-    return body;
+export const startUpload = (file) => {
+  return async (dispatch) => {
+    console.log(file);
+    const { userUpdated: user, ok } = await fileUpload(file);
+    if (!ok) {
+      Swal.fire("Error", "ha habido un problema subiendo la imagen");
+    } else {
+      Swal.fire(
+        "Succes",
+        "all it's ok. Refresh for see the changes",
+        "success"
+      );
+      // browserHistory.push("/auth/login");
+      dispatch(login(user));
+    }
   };
 };
 
