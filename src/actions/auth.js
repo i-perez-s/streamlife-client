@@ -1,5 +1,5 @@
 import Swal from "sweetalert2";
-import { browserHistory } from "react-router";
+import history from "../helpers/history";
 import { fetchConToken, fetchSinToken } from "../helpers/fetch";
 import { fileUpload } from "../helpers/fileUpload";
 import { types } from "../types/types";
@@ -70,7 +70,7 @@ export const startUpload = (file) => {
         "all it's ok. Refresh for see the changes",
         "success"
       );
-      // browserHistory.push("/auth/login");
+      // history.push("/auth/login");
       dispatch(login(user));
     }
   };
