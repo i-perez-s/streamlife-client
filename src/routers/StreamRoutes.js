@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 
 import { Navbar } from "../components/UI/Navbar";
-import { SearchScreen } from "../components/stream/SearchScreen";
+import { SearchScreen } from "../components/search/SearchScreen";
 import { HomeScreen } from "../components/stream/HomeScreen";
 import { StreamScreen } from "../components/stream/StreamScreen";
 import { MeScreen } from "../components/stream/MeScreen";

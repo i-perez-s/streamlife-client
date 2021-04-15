@@ -38,8 +38,7 @@ export const MeScreen = () => {
   return (
     <div className="row">
       <div className="col-md-6 mb-5">
-        {/* <img className="imgUserMePage" src={user.photo} alt="userImg" /> */}
-        <div className="imgUserMePage" style={userPhoto}></div>
+        <img className="imgUserMePage" src={user.photo} alt="userImg" />
 
         <span className="mt-5">Change user img:</span>
         <input
