@@ -37,7 +37,7 @@ body {
 /* End body rules */
 
 /* Start form  attributes */
-form {
+.form-login {
   width: 450px;
   min-height: 500px;
   height: auto;
@@ -48,7 +48,7 @@ form {
   background-image: linear-gradient(-225deg, #e3fdf5 50%, #3cc47c 50%);
 }
 /* form Container */
-form .con {
+.form-login .con {
   display: -webkit-flex;
   display: flex;
 

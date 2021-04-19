@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { startDelete, startLogout, startUpload } from "../../actions/auth";
 
@@ -6,12 +6,7 @@ export const MeScreen = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
   const [streamKey, setStreamKey] = useState("**************");
-  const [userPhoto, setUserPhoto] = useState({});
-  useEffect(() => {
-    setUserPhoto({
-      backgroundImage: `url(${user.photo})`,
-    });
-  }, [user.photo]);
+
   const handleStreamKey = () => {
     if (streamKey.includes("**************")) {
       setStreamKey(user._id);
@@ -31,9 +26,6 @@ export const MeScreen = () => {
 
   const handleDelete = () => {
     dispatch(startDelete());
-  };
-  const style = {
-    backgroundImage: `url(${userPhoto})`,
   };
   return (
     <div className="row">

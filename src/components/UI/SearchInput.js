@@ -1,16 +1,12 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 import { useForm } from "../../hooks/useForm";
 
-import { startSearchResults } from "../../actions/search";
-
-export const SearchInput = () => {
-  const dispatch = useDispatch();
+export const SearchInput = ({ history }) => {
   const [{ search }, handleInputChange] = useForm({ search: "" });
 
   const submit = (e) => {
     e.preventDefault();
-    dispatch(startSearchResults(search));
+    history.push(`/search/${search}`);
   };
   return (
     <div className="row">

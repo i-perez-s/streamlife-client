@@ -5,7 +5,7 @@ const initialState = {
   searchResult: [],
 };
 
-export const authReducer = (state = initialState, action) => {
+export const searchReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.setSearchResults:
       return {

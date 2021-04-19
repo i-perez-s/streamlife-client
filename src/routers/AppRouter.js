@@ -21,7 +21,7 @@ export const AppRouter = () => {
   }, [dispatch]);
 
   return (
-    <Router history={history}>
+    <Router>
       <div>
         <Switch>
           <PublicRoute

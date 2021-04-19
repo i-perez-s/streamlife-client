@@ -1,5 +1,4 @@
 import Swal from "sweetalert2";
-import history from "../helpers/history";
 import { fetchConToken, fetchSinToken } from "../helpers/fetch";
 import { fileUpload } from "../helpers/fileUpload";
 import { types } from "../types/types";

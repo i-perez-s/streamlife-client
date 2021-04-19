@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import { FollowedUsers } from "./FollowedUsers";
 import { SearchInput } from "./SearchInput";
-export const Navbar = () => {
+export const Navbar = ({ history }) => {
   const { user } = useSelector((state) => state.auth);
   return (
     <>
@@ -19,7 +19,7 @@ export const Navbar = () => {
             />
           </Link>
 
-          <SearchInput />
+          <SearchInput history={history} />
 
           <div>
             <div className="right-links float-right mr-4">

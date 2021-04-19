@@ -1,21 +1,21 @@
-import { types } from "node-sass";
+import { types } from "../types/types";
 import { fetchConToken } from "../helpers/fetch";
 
 export const setSearchResults = (results) => ({
-  type: types.SetSearchResults,
-  action: results,
+  type: types.setSearchResults,
+  payload: results,
 });
 
 export const setSearchQuery = (query) => ({
   type: types.setSearchQuery,
-  action: query,
+  payload: query,
 });
 
 export const startSearchResults = (query) => {
   return async (dispatch) => {
     const resp = await fetchConToken(`search/${query}`);
-    const body = await resp.json;
+    const body = await resp.json();
     dispatch(setSearchQuery(query));
-    dispatch(setSearchResults(body.results));
+    dispatch(setSearchResults(body.usersSearched));
   };
 };
