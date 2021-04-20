@@ -1,0 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap");
+
+.searchResultCard {
+  padding: 5px;
+  height: 7vh;
+  background-color: #f1ecec;
+  color: black;
+  font-size: 20px;
+  text-align: center;
+  & p {
+    font-family: "Ubuntu Mono", monospace !important;
+    display: inline;
+    margin-top: 20px;
+  }
+  & img {
+    max-height: 6vh;
+    height: 100%;
+    float: left;
+  }
+  & .btn {
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    margin-left: 7px;
+    width: 10vh;
+    float: right;
+  }
+}

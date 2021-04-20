@@ -5,4 +5,6 @@ export const types = {
 
   setSearchResults: "[search] set results",
   setSearchQuery: "[search] set search query",
+
+  addNewFollow: "[follow] add new follow",
 };
