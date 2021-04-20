@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 
 import { Navbar } from "../components/UI/Navbar";
@@ -6,8 +6,14 @@ import { SearchScreen } from "../components/search/SearchScreen";
 import { HomeScreen } from "../components/stream/HomeScreen";
 import { StreamScreen } from "../components/stream/StreamScreen";
 import { MeScreen } from "../components/stream/MeScreen";
+import { useDispatch } from "react-redux";
+import { startLoadingFollows } from "../actions/follow";
 
 export const StreamRoutes = ({ history }) => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(startLoadingFollows());
+  }, [dispatch]);
   return (
     <>
       <Navbar history={history} />
