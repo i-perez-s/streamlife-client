@@ -9,7 +9,7 @@ export const followReducer = (state = initialState, action) => {
     case types.addNewFollow:
       return {
         ...state,
-        follows: [...state.follows, ...action.payload],
+        follows: [...state.follows, action.payload],
       };
     case types.putAllFollows:
       return {
@@ -17,10 +17,12 @@ export const followReducer = (state = initialState, action) => {
         follows: [...action.payload],
       };
     case types.deleteFollow:
-      return {
+    return {
         ...state,
         follows: state.follows.filter(
-          (follow) => follow.followed !== action.payload
+          (follow) => {
+            return follow.followed[0]._id !== action.payload.followed[0]._id
+          }
         ),
       };
 
