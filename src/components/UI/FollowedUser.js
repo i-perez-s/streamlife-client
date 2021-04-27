@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export const FollowedUser = () => {
+export const FollowedUser = ({user}) => {
+  const userFollowed = user.followed[0]
   return (
     <li className="list-group-item pl-3 py-2">
-      <Link to={`/stream/dsdsd`}>
-        <i className="fa fa-user" aria-hidden="true">
-          <span className="ml-2 align-middle">pepe</span>
-        </i>
+      <Link to={`/stream/${userFollowed._id}`} className="navbarUserName">
+          <img src={userFollowed.photo} alt="userPhoto" className="navbarUserPhoto" />
+          <span className="ml-2 align-middle navbarUserName">{userFollowed.username}</span>
       </Link>
     </li>
   );

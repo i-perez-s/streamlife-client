@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { startFollowing, stopFollowing } from "../../actions/follow";
 
 export const SearchCard = ({ user }) => {
+  console.log(user)
   const dispatch = useDispatch();
   const { follows } = useSelector((state) => state.follows);
   const [isFollowing, setIsFollowing] = useState(true);

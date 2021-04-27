@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { startDelete, startLogout, startUpload } from "../../actions/auth";
 
 export const MeScreen = () => {
@@ -55,6 +56,14 @@ export const MeScreen = () => {
         >
           Get stream key
         </button>
+        <Link to="/myFollows">
+        <button
+          className="btn btn-all btn-warning meScreenButton"
+          onClick={handleStreamKey}
+        >
+My follows
+        </button>
+        </Link>
         <button
           className="btn btn-all btn-info  meScreenButton "
           onClick={handleLogout}

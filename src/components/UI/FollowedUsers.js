@@ -1,13 +1,14 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { FollowedUser } from "./FollowedUser";
 
 export const FollowedUsers = () => {
-  const users = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }];
-
+  const {follows} = useSelector(state => state.follows)
   return (
     <ul className="list-group flex-column d-inline-block first-menu">
-      {users.map((user) => (
-        <FollowedUser key={user.id} />
+      {follows.map((user) => (
+        
+        <FollowedUser key={user.id} user={user.followed} />
       ))}
     </ul>
   );

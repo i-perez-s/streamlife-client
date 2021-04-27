@@ -36,7 +36,6 @@ export const AppRouter = () => {
             isAuthenticated={!!_id}
           />
 
-          <Redirect to="/auth" />
         </Switch>
       </div>
     </Router>

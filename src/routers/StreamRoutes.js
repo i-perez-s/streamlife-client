@@ -8,6 +8,7 @@ import { StreamScreen } from "../components/stream/StreamScreen";
 import { MeScreen } from "../components/stream/MeScreen";
 import { useDispatch } from "react-redux";
 import { startLoadingFollows } from "../actions/follow";
+import { FollowScreen } from "../components/search/FollowScreen";
 
 export const StreamRoutes = ({ history }) => {
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ export const StreamRoutes = ({ history }) => {
             <Route exact path="/me" component={MeScreen} />
             <Route exact path="/stream/:id" component={StreamScreen} />
             <Route exact path="/search/:searchInput" component={SearchScreen} />
+            <Route exact path="/myFollows" component={FollowScreen} />
           </Switch>
         </div>
       </div>
