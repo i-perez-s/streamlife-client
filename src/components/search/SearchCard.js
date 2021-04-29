@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { startFollowing, stopFollowing } from "../../actions/follow";
 
 export const SearchCard = ({ user }) => {
-  console.log(user)
+  console.log(user);
   const dispatch = useDispatch();
   const { follows } = useSelector((state) => state.follows);
   const [isFollowing, setIsFollowing] = useState(true);
@@ -26,18 +27,20 @@ export const SearchCard = ({ user }) => {
   };
 
   return (
-    <div className="searchResultCard mt-3">
-      <img src={user.photo} alt="userPhoto" />
-      <p>{user.username}</p>
-      {isFollowing ? (
-        <button className="btn btn-danger" onClick={deleteFollow}>
-          Stop following
-        </button>
-      ) : (
-        <button className="btn btn-success" onClick={follow}>
-          Follow
-        </button>
-      )}
-    </div>
+    <Link to={`/stream/${user._id}`} className="navbarUserName">
+      <div className="searchResultCard mt-3">
+        <img src={user.photo} alt="userPhoto" />
+        <p>{user.username}</p>
+        {isFollowing ? (
+          <button className="btn btn-danger" onClick={deleteFollow}>
+            Stop following
+          </button>
+        ) : (
+          <button className="btn btn-success" onClick={follow}>
+            Follow
+          </button>
+        )}
+      </div>
+    </Link>
   );
 };

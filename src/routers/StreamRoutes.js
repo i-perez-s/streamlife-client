@@ -23,7 +23,7 @@ export const StreamRoutes = ({ history }) => {
           <Switch>
             <Route exact path="/" component={HomeScreen} />
             <Route exact path="/me" component={MeScreen} />
-            <Route exact path="/stream/:id" component={StreamScreen} />
+            <Route exact path="/stream/:sid" component={StreamScreen} />
             <Route exact path="/search/:searchInput" component={SearchScreen} />
             <Route exact path="/myFollows" component={FollowScreen} />
           </Switch>
