@@ -1,4 +1,34 @@
 .chat {
-  background-color: #fff;
   height: 100%;
+  // margin: 10px;
+}
+.chatInput {
+  width: 90%;
+  margin-right: 10px;
+  display: inline;
+
+}
+
+.chatInputBox {
+  width: 100%;
+  align-items: center;
+  &:focus {
+    border: black !important;
+  }
+}
+
+.chatBox {
+  background-color: #fff;
+  padding: 10px;
+}
+.userChatPhoto {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+}
+.fa-location-arrow {
+  color: $electricGreen;
+}
+.sendButton {
+  display: inline;
 }
