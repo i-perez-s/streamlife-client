@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 export const ComentChat = ({ content, type, user }) => {
-  console.log(content, type, user);
   return (
     <li className="comment">
       <img src={user.photo} className="userChatPhoto" alt="userPhoto" />
