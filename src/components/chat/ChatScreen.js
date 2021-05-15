@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { io } from "socket.io-client";
 import { useForm } from "../../hooks/useForm";
@@ -7,98 +7,38 @@ const url = "http://localhost:3001";
 
 export const ChatScreen = () => {
   const { sid } = useParams();
+  const [comments, setComments] = useState([]);
   const socket = io(url, {
     extraHeaders: {
       token: localStorage.getItem("token"),
       idstream: sid,
     },
   });
-  const comments = [
-    {
-      content: "asdasd",
-      type: "message",
-      user: {
-        name: "asdasda",
-        photo:
-          "https://iteragrow.com/wp-content/uploads/2018/04/buyer-persona-e1545248524290.jpg",
-      },
-    },
-    {
-      content: "asdasd",
-      type: "message",
-      user: {
-        name: "asdasda",
-        photo:
-          "https://iteragrow.com/wp-content/uploads/2018/04/buyer-persona-e1545248524290.jpg",
-      },
-    },
-    {
-      content: "asdasd",
-      type: "message",
-      user: {
-        name: "asdasda",
-        photo:
-          "https://iteragrow.com/wp-content/uploads/2018/04/buyer-persona-e1545248524290.jpg",
-      },
-    },
-    {
-      content: "asdasd",
-      type: "message",
-      user: {
-        name: "asdasda",
-        photo:
-          "https://iteragrow.com/wp-content/uploads/2018/04/buyer-persona-e1545248524290.jpg",
-      },
-    },
-    {
-      content: "asdasd",
-      type: "message",
-      user: {
-        name: "asdasda",
-        photo:
-          "https://iteragrow.com/wp-content/uploads/2018/04/buyer-persona-e1545248524290.jpg",
-      },
-    },
-  ];
+
   const [{ message }, handleInputChange] = useForm({
     message: "",
   });
 
   useEffect(() => {
-    socket.on("send-message", (message) => {
-      console.log(message);
+    socket.on("chatMessage", (comment) => {
+      console.log(comment);
+      console.log(...comments);
+      setComments([...comments, comment]);
     });
-    socket.on("send-emote", (message) => {
-      console.log(message);
-    });
-
     return () => {
       socket.disconnect();
     };
   }, [socket]);
 
-  const sendMessage = () => {
-    socket.emit("send-message", {
-      text: message,
-      chat: sid,
-    });
-  };
-
-  const sendEmote = () => {
-    socket.emit("send-emote", {
-      text: "6047cbc967c5f937f0341be2",
-      chat: "a",
-    });
+  const hello = () => {
+    socket.emit("sendChatMessage", { content: message, chat: sid });
   };
 
   return (
     <div className="chatBox">
       <ul className="chat">
         {comments.map((comment) => (
-          <ComentChat
-            {...comment}
-            key={comment.user.name + new Date().getMilliseconds}
-          />
+          <ComentChat {...comment} key={comment.user._id} />
         ))}
       </ul>
       <div className="chatInputBox">
@@ -110,7 +50,7 @@ export const ChatScreen = () => {
           onChange={handleInputChange}
           value={message}
         />
-        <div className="sendButton" onClick={sendMessage}>
+        <div className="sendButton" onClick={hello}>
           <i className="fas fa-location-arrow"></i>
         </div>
       </div>

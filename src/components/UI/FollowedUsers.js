@@ -7,7 +7,7 @@ export const FollowedUsers = () => {
   return (
     <ul className="list-group flex-column d-inline-block first-menu">
       {follows.map((user) => (
-        <FollowedUser key={user.id} user={user.followed[0]} />
+        <FollowedUser key={user._id} user={user.followed[0]} />
       ))}
     </ul>
   );
