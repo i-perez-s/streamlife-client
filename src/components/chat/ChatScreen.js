@@ -3,10 +3,12 @@ import { useParams } from "react-router";
 import { io } from "socket.io-client";
 import { useForm } from "../../hooks/useForm";
 import { ComentChat } from "./ComentChat";
+import {useSelector} from 'react-redux'
 const url = "http://localhost:3001";
 
 export const ChatScreen = () => {
   const { sid } = useParams();
+  const {user} = useSelector(state => state.auth)
   const [comments, setComments] = useState([]);
   const socket = io(url, {
     extraHeaders: {
@@ -22,7 +24,6 @@ export const ChatScreen = () => {
   useEffect(() => {
     socket.on("chatMessage", (comment) => {
       console.log(comment);
-      console.log(...comments);
       setComments([...comments, comment]);
     });
     return () => {
@@ -30,7 +31,14 @@ export const ChatScreen = () => {
     };
   }, [socket]);
 
-  const hello = () => {
+  const sendMessage = (e) => {
+    e.preventDefault()
+    const comment = {content: message, user: {
+      _id: user._id,
+      name: user.username,
+      photo: user.photo
+    }}
+    setComments([...comments, comment]);
     socket.emit("sendChatMessage", { content: message, chat: sid });
   };
 
@@ -42,6 +50,7 @@ export const ChatScreen = () => {
         ))}
       </ul>
       <div className="chatInputBox">
+        <form onSubmit={sendMessage}>
         <input
           type="text"
           className="chatInput form-control"
@@ -49,10 +58,12 @@ export const ChatScreen = () => {
           name="message"
           onChange={handleInputChange}
           value={message}
+          autoComplete='off'
         />
-        <div className="sendButton" onClick={hello}>
+        <button className="sendButton" type="submit">
           <i className="fas fa-location-arrow"></i>
-        </div>
+        </button>
+        </form>
       </div>
     </div>
   );

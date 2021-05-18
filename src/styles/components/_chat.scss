@@ -1,12 +1,12 @@
 .chat {
-  height: 100%;
-  // margin: 10px;
-}
+  height: 500px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  }
 .chatInput {
   width: 90%;
   margin-right: 10px;
   display: inline;
-
 }
 
 .chatInputBox {
@@ -20,6 +20,8 @@
 .chatBox {
   background-color: #fff;
   padding: 10px;
+  height: 100%;
+  
 }
 .userChatPhoto {
   height: 30px;
@@ -31,4 +33,7 @@
 }
 .sendButton {
   display: inline;
+  margin: 0;
+  width: 0 !important;
+  padding: 0 !important;
 }
